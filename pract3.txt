@@ -1,0 +1,29 @@
+
+
+mysql> create database pract3;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use pract3;
+Database changed
+mysql> CREATE TABLE Orders (
+    ->     OrderID INT PRIMARY KEY,
+    ->     CustomerName VARCHAR(100),
+    ->     OrderDate DATE,
+    ->     Amount DECIMAL(10, 2)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql>  INSERT INTO Orders (OrderID, CustomerName, OrderDate, Amount) VALUES (1, 'Ravi Mehta', '2024-12-19', 1500.00);INSERT INTO Orders (OrderID, CustomerName, OrderDate, Amount) VALUES (2, 'Priya Singh', '2024-12-20', 2300.00);INSERT INTO Orders (OrderID, CustomerName, OrderDate, Amount) VALUES (3, 'Amit Joshi', '2024-12-21', 1200.00);
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+mysql>commit
+Query OK, 0 rows affected (0.01 sec)
+
+mysql>

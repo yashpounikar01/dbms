@@ -1,0 +1,50 @@
+
+mysql> create database pract4;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use pract4;
+Database changed
+mysql> CREATE TABLE Students (
+    ->     StudentID INT PRIMARY KEY,
+    ->     Name VARCHAR(100),
+    ->     Email VARCHAR(100),
+    ->     PhoneNumber VARCHAR(15)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> CREATE TABLE Courses (
+    ->     CourseID INT PRIMARY KEY,
+    ->     CourseName VARCHAR(100),
+    ->     StudentID INT,
+    ->     FOREIGN KEY (StudentID) REFERENCES Students(StudentID)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> ALTER TABLE Students
+    -> MODIFY Email VARCHAR(100) NOT NULL;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE Products (
+    ->     ProductID INT PRIMARY KEY,
+    ->     ProductName VARCHAR(100),
+    ->     Price DECIMAL(10, 2) CHECK (Price > 0)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> ALTER TABLE Customers
+    -> ADD CONSTRAINT UniquePhoneNumber UNIQUE (PhoneNumber);
+ERROR 1146 (42S02): Table 'pract4.customers' doesn't exist
+mysql> CREATE TABLE Customers (
+    ->     CustomerID INT PRIMARY KEY,
+    ->     Name VARCHAR(100),
+    ->     PhoneNumber VARCHAR(15) UNIQUE
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> ALTER TABLE Customers
+    -> ADD CONSTRAINT UniquePhoneNumber UNIQUE (PhoneNumber);
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql>

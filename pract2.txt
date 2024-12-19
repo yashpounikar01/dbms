@@ -1,0 +1,92 @@
+
+mysql> create database pract2;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use pract2;
+Database changed
+mysql> CREATE TABLE Employees (
+    ->     EmpID INT PRIMARY KEY,
+    ->     Name VARCHAR(100),
+    ->     Position VARCHAR(50),
+    ->     Salary FLOAT,
+    ->     HireDate DATE
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> ALTER TABLE Employees
+    -> ADD Department VARCHAR(50);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE Employees
+    -> MODIFY Salary DECIMAL(10, 2);
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO Employees (EmpID, Name, Position, Salary, HireDate, Department)
+    -> VALUES
+    -> (1, 'Aarav Sharma', 'Manager', 65000, '2022-01-15', 'Finance'),
+    -> (2, 'Ishita Verma', 'Engineer', 48000, '2021-06-10', 'IT'),
+    -> (3, 'Rohan Patel', 'Intern', 20000, '2023-07-01', 'HR'),
+    -> (4, 'Sanya Kapoor', 'Manager', 68000, '2020-03-25', 'Marketing'),
+    -> (5, 'Aditya Singh', 'Analyst', 55000, '2019-12-12', 'Operations');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select*from Employees;
++-------+--------------+----------+----------+------------+------------+
+| EmpID | Name         | Position | Salary   | HireDate   | Department |
++-------+--------------+----------+----------+------------+------------+
+|     1 | Aarav Sharma | Manager  | 65000.00 | 2022-01-15 | Finance    |
+|     2 | Ishita Verma | Engineer | 48000.00 | 2021-06-10 | IT         |
+|     3 | Rohan Patel  | Intern   | 20000.00 | 2023-07-01 | HR         |
+|     4 | Sanya Kapoor | Manager  | 68000.00 | 2020-03-25 | Marketing  |
+|     5 | Aditya Singh | Analyst  | 55000.00 | 2019-12-12 | Operations |
++-------+--------------+----------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE Employees
+    -> SET Salary = 70000
+    -> WHERE Position = 'Manager';
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select*from Employees;
++-------+--------------+----------+----------+------------+------------+
+| EmpID | Name         | Position | Salary   | HireDate   | Department |
++-------+--------------+----------+----------+------------+------------+
+|     1 | Aarav Sharma | Manager  | 70000.00 | 2022-01-15 | Finance    |
+|     2 | Ishita Verma | Engineer | 48000.00 | 2021-06-10 | IT         |
+|     3 | Rohan Patel  | Intern   | 20000.00 | 2023-07-01 | HR         |
+|     4 | Sanya Kapoor | Manager  | 70000.00 | 2020-03-25 | Marketing  |
+|     5 | Aditya Singh | Analyst  | 55000.00 | 2019-12-12 | Operations |
++-------+--------------+----------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> DELETE FROM Employees
+    -> WHERE Position = 'Intern';
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from Employees;
++-------+--------------+----------+----------+------------+------------+
+| EmpID | Name         | Position | Salary   | HireDate   | Department |
++-------+--------------+----------+----------+------------+------------+
+|     1 | Aarav Sharma | Manager  | 70000.00 | 2022-01-15 | Finance    |
+|     2 | Ishita Verma | Engineer | 48000.00 | 2021-06-10 | IT         |
+|     4 | Sanya Kapoor | Manager  | 70000.00 | 2020-03-25 | Marketing  |
+|     5 | Aditya Singh | Analyst  | 55000.00 | 2019-12-12 | Operations |
++-------+--------------+----------+----------+------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT Name, Salary
+    -> FROM Employees
+    -> WHERE Salary > 50000;
++--------------+----------+
+| Name         | Salary   |
++--------------+----------+
+| Aarav Sharma | 70000.00 |
+| Sanya Kapoor | 70000.00 |
+| Aditya Singh | 55000.00 |
++--------------+----------+
+3 rows in set (0.00 sec)
+

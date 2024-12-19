@@ -1,0 +1,178 @@
+
+mysql> create database pract6;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use pract6;
+Database changed
+mysql> CREATE TABLE Orders2023 (
+    ->     OrderID INT PRIMARY KEY,
+    ->     ProductName VARCHAR(100),
+    ->     Quantity INT
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql>
+mysql> INSERT INTO Orders2023 (OrderID, ProductName, Quantity)
+    -> VALUES
+    -> (1, 'Laptop', 5),
+    -> (2, 'Smartphone', 10),
+    -> (3, 'Tablet', 3);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> CREATE TABLE Orders2024 (
+    ->     OrderID INT PRIMARY KEY,
+    ->     ProductName VARCHAR(100),
+    ->     Quantity INT
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql>
+mysql> INSERT INTO Orders2024 (OrderID, ProductName, Quantity)
+    -> VALUES
+    -> (4, 'Monitor', 8),
+    -> (5, 'Keyboard', 15),
+    -> (6, 'Smartphone', 7);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE WarehouseA (
+    ->     ProductID INT PRIMARY KEY,
+    ->     ProductName VARCHAR(100)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql>
+mysql> INSERT INTO WarehouseA (ProductID, ProductName)
+    -> VALUES
+    -> (1, 'Laptop'),
+    -> (2, 'Smartphone'),
+    -> (3, 'Tablet');
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> CREATE TABLE WarehouseB (
+    ->     ProductID INT PRIMARY KEY,
+    ->     ProductName VARCHAR(100)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql>
+mysql> INSERT INTO WarehouseB (ProductID, ProductName)
+    -> VALUES
+    -> (2, 'Smartphone'),
+    -> (3, 'Tablet'),
+    -> (4, 'Monitor');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE DepartmentA (
+    ->     EmpID INT PRIMARY KEY,
+    ->     Name VARCHAR(100)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql>
+mysql> INSERT INTO DepartmentA (EmpID, Name)
+    -> VALUES
+    -> (1, 'Aarav Sharma'),
+    -> (2, 'Ishita Verma'),
+    -> (3, 'Sanya Kapoor');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> CREATE TABLE DepartmentB (
+    ->     EmpID INT PRIMARY KEY,
+    ->     Name VARCHAR(100)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql>
+mysql> INSERT INTO DepartmentB (EmpID, Name)
+    -> VALUES
+    -> (2, 'Ishita Verma'),
+    -> (4, 'Rohan Patel');
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT ProductName, Quantity
+    -> FROM Orders2023
+    -> UNION
+    -> SELECT ProductName, Quantity
+    -> FROM Orders2024;
++-------------+----------+
+| ProductName | Quantity |
++-------------+----------+
+| Laptop      |        5 |
+| Smartphone  |       10 |
+| Tablet      |        3 |
+| Monitor     |        8 |
+| Keyboard    |       15 |
+| Smartphone  |        7 |
++-------------+----------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT ProductName
+    -> FROM WarehouseA
+    -> INTERSECT
+    -> SELECT ProductName
+    -> FROM WarehouseB;
++-------------+
+| ProductName |
++-------------+
+| Smartphone  |
+| Tablet      |
++-------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT Name
+    -> FROM DepartmentA
+    -> EXCEPT
+    -> SELECT Name
+    -> FROM DepartmentB;
++--------------+
+| Name         |
++--------------+
+| Aarav Sharma |
+| Sanya Kapoor |
++--------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT ProductName, Quantity
+    -> FROM Orders2023
+    -> UNION ALL
+    -> SELECT ProductName, Quantity
+    -> FROM Orders2024;
++-------------+----------+
+| ProductName | Quantity |
++-------------+----------+
+| Laptop      |        5 |
+| Smartphone  |       10 |
+| Tablet      |        3 |
+| Monitor     |        8 |
+| Keyboard    |       15 |
+| Smartphone  |        7 |
++-------------+----------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT ProductName, Quantity
+    -> FROM Orders2023
+    -> WHERE Quantity > 5
+    -> UNION
+    -> SELECT ProductName, Quantity
+    -> FROM Orders2024
+    -> WHERE Quantity > 5;
++-------------+----------+
+| ProductName | Quantity |
++-------------+----------+
+| Smartphone  |       10 |
+| Monitor     |        8 |
+| Keyboard    |       15 |
+| Smartphone  |        7 |
++-------------+----------+
+4 rows in set (0.00 sec)
+
+mysql>

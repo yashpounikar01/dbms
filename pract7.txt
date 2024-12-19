@@ -1,0 +1,140 @@
+
+mysql> create database pract7;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use pract7;
+Database changed
+mysql> CREATE TABLE Employees (
+    ->     EmpID INT PRIMARY KEY,
+    ->     Name VARCHAR(100),
+    ->     Position VARCHAR(50),
+    ->     Salary FLOAT,
+    ->     HireDate DATE
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> ALTER TABLE Employees
+    -> ADD Department VARCHAR(50);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>  ALTER TABLE Employees
+    -> MODIFY Salary DECIMAL(10, 2);
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO Employees (EmpID, Name, Position, Salary, HireDate, Department)
+    -> VALUES
+    -> (1, 'Aarav Sharma', 'Manager', 65000, '2022-01-15', 'Finance'),
+    -> (2, 'Ishita Verma', 'Engineer', 48000, '2021-06-10', 'IT'),
+    -> (3, 'Rohan Patel', 'Intern', 20000, '2023-07-01', 'HR'),
+    -> (4, 'Sanya Kapoor', 'Manager', 68000, '2020-03-25', 'Marketing'),
+    -> (5, 'Aditya Singh', 'Analyst', 55000, '2019-12-12', 'Operations');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT *
+    -> FROM Employees
+    -> WHERE Salary BETWEEN 30000 AND 70000;
++-------+--------------+----------+----------+------------+------------+
+| EmpID | Name         | Position | Salary   | HireDate   | Department |
++-------+--------------+----------+----------+------------+------------+
+|     1 | Aarav Sharma | Manager  | 65000.00 | 2022-01-15 | Finance    |
+|     2 | Ishita Verma | Engineer | 48000.00 | 2021-06-10 | IT         |
+|     4 | Sanya Kapoor | Manager  | 68000.00 | 2020-03-25 | Marketing  |
+|     5 | Aditya Singh | Analyst  | 55000.00 | 2019-12-12 | Operations |
++-------+--------------+----------+----------+------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Orders (
+    ->     OrderID INT PRIMARY KEY,
+    ->     ProductName VARCHAR(100),
+    ->     Quantity INT,
+    ->     OrderDate DATE
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql>
+mysql> INSERT INTO Orders (OrderID, ProductName, Quantity, OrderDate)
+    -> VALUES
+    -> (1, 'Laptop', 5, '2023-03-15'),
+    -> (2, 'Smartphone', 10, '2023-07-10'),
+    -> (3, 'Tablet', 3, '2024-01-05');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT *
+    -> FROM Orders
+    -> WHERE OrderDate BETWEEN '2023-01-01' AND '2023-12-31';
++---------+-------------+----------+------------+
+| OrderID | ProductName | Quantity | OrderDate  |
++---------+-------------+----------+------------+
+|       1 | Laptop      |        5 | 2023-03-15 |
+|       2 | Smartphone  |       10 | 2023-07-10 |
++---------+-------------+----------+------------+
+2 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Students (
+    ->     StudentID INT PRIMARY KEY,
+    ->     Name VARCHAR(100),
+    ->     Age INT,
+    ->     Course VARCHAR(50)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql>
+mysql> INSERT INTO Students (StudentID, Name, Age, Course)
+    -> VALUES
+    -> (1, 'Karan Mehta', 21, 'Math'),
+    -> (2, 'Priya Singh', 19, 'Physics'),
+    -> (3, 'Ananya Sharma', 20, 'Chemistry'),
+    -> (4, 'Rahul Verma', 22, 'Biology');
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> SELECT *
+    -> FROM Students
+    -> WHERE Course IN ('Math', 'Physics', 'Chemistry');
++-----------+---------------+------+-----------+
+| StudentID | Name          | Age  | Course    |
++-----------+---------------+------+-----------+
+|         1 | Karan Mehta   |   21 | Math      |
+|         2 | Priya Singh   |   19 | Physics   |
+|         3 | Ananya Sharma |   20 | Chemistry |
++-----------+---------------+------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM Products
+    -> WHERE Price BETWEEN 100 AND 500;
+ERROR 1146 (42S02): Table 'pract7.products' doesn't exist
+mysql> CREATE TABLE Customers (
+    ->     CustomerID INT PRIMARY KEY,
+    ->     Name VARCHAR(100),
+    ->     City VARCHAR(50)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql>
+mysql> INSERT INTO Customers (CustomerID, Name, City)
+    -> VALUES
+    -> (1, 'John Doe', 'New York'),
+    -> (2, 'Jane Smith', 'Los Angeles'),
+    -> (3, 'Alice Johnson', 'Chicago'),
+    -> (4, 'Bob Brown', 'Houston');
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> SELECT *
+    -> FROM Customers
+    -> WHERE City IN ('New York', 'Los Angeles', 'Chicago');
++------------+---------------+-------------+
+| CustomerID | Name          | City        |
++------------+---------------+-------------+
+|          1 | John Doe      | New York    |
+|          2 | Jane Smith    | Los Angeles |
+|          3 | Alice Johnson | Chicago     |
++------------+---------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql>
